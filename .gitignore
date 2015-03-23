@@ -3,6 +3,7 @@
 /node_modules
 /.idea
 /packages
+/public/media
 .DS_Store
 .env.*
 workspace.xml
