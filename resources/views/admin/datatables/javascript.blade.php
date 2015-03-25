@@ -88,9 +88,13 @@
                             "pagingType": "bootstrap_extended", // pagination type(bootstrap, bootstrap_full_number or bootstrap_extended)
                             "autoWidth": false, // disable fixed width and enable fluid table
 
-                            'fnServerParams': function ( aoData ) {
-                                aoData.push( { "name": "more_data", "value": $('#order_date_from').val() } );
-                            },
+                            @if(!empty($columnsMap))
+                                'fnServerParams': function ( aoData ) {
+                                    @foreach($columnsMap as $colOptions)
+                                        aoData.push( { "name": {!! $colName !!}, "value": $('#{!! $colOptions['filter'] !!}').val() } );
+                                    @endforeach
+                                },
+                            @endif
 
                             "drawCallback": function(oSettings) { // run some code on table redraw
                                 if (tableInitialized === false) { // check if table has been initialized

@@ -5,39 +5,40 @@
 
     $columnsMap = array(
         'id' => array(
-            'name' => 'ID',
-            'filter' => 'text',
+            'label' => 'ID',
+            'filters' => ['id'=>'text'],
             'width' => '5%',
         ),
         'name' => array(
-            'name' => 'Name',
-            'filter' => 'text',
+            'label' => 'Name',
+            'filters' => ['name'=>'text'],
             'width' => '25%',
         ),
         'phone' => array(
-            'name' => 'Phone',
-            'filter' => 'text',
+            'label' => 'Phone',
+            'filters' => ['phone'=>'text'],
             'width' => '15%',
         ),
         'created_at' => array(
-            'name' => 'Created at',
-            'filter' => 'date-range',
+            'label' => 'Created at',
+            'filters' => ['created_at_from'=>'date-from', 'created_at_to' => 'date-to'],
             'width' => '15%',
         ),
         'updated_at' => array(
-            'name' => 'Updated at',
-            'filter' => 'date-range',
+            'label' => 'Updated at',
+            'filters' => ['updated_at_from'=>'date-from', 'updated_at_to' => 'date-to'],
             'width' => '15%',
         ),
         'actions' => array(
-            'name' => 'Actions',
-            'filter' => [], // ['btn_submit_search', 'btn_submit_reset'],
-            'width' => '15%',
+            'label' => 'Actions',
+            'filters' => ['btn_submit_search', 'btn_submit_reset'],
+            'width' => '10%',
+            'align' => 'left',
         ),
     );
 
     $table = Datatable::table()
-            ->addColumn(array_pluck($columnsMap, 'name'))       // these are the column headings to be shown
+            ->addColumn(array_pluck($columnsMap, 'label'))       // these are the column headings to be shown
             ->setOptions( array(
                         'tableTools' => array(
                             'sSwfPath' => asset('admin/global/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf'),
@@ -51,24 +52,7 @@
             ->setUrl(route('api.clients'))   // this is the route where data will be retrieved
             ->setId($datatableId);
 ?>
-
-@section('datatables.column_filters')
-    <tr class="filter">
-        @foreach($columnsMap as $colName => $colOptions)
-            <td align="center" valign="middle" class="head{{ $colName }}" width="{{ $colOptions['width'] }}">
-                @if(!empty($colOptions['filter']))
-                    @if(is_array($colOptions['filter']))
-                        @foreach($colOptions['filter'] as $filterName)
-                            @include('admin.datatables.elements.'.$filterName, ['id'=>$colName])
-                        @endforeach
-                    @elseif(is_string($colOptions['filter']))
-                        @include('admin.datatables.elements.'.$colOptions['filter'], ['id'=>$colName])
-                    @endif
-                @endif
-            </td>
-        @endforeach
-    </tr>
-@stop
+@include('admin.datatables.column-filters')
 
 @section('content')
     <div class="portlet">

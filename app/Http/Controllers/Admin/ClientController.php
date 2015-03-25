@@ -3,10 +3,7 @@
 use App\User;
 use App\Client;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
 use App\Http\Requests\ClientRequest;
-use Illuminate\Contracts\Validation\ValidationException;
-use League\Flysystem\Exception;
 
 class ClientController extends Controller {
 
@@ -139,7 +136,8 @@ class ClientController extends Controller {
 
 		\DB::commit();
 
-		return redirect()->back()->withInput();	}
+		return redirect()->back()->withInput();
+	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -162,6 +160,44 @@ class ClientController extends Controller {
  		$clients = \DB::table('clients')->join('users', 'users.id', '=', 'clients.user_id')
 			->select(array('clients.id', \DB::raw('concat(first_name,\' \', last_name) as name'), 'phone', 'clients.created_at',
 				'clients.updated_at'));
+
+		$filters = \Input::get('filters');
+		if(!empty($filters))
+		{
+			foreach($filters as $fName => $fValue)
+			{
+				if(!$fValue) continue;
+
+				switch($fName){
+					case 'id':
+						$clients->where('clients.id', 'like', '%'.$fValue.'%');
+						break;
+					case 'name';
+						$clients->where(function($query)  use ($fValue)
+						{
+							$query->orWhere('first_name', 'like', '%'.$fValue.'%');
+							$query->orWhere('last_name', 'like', '%'.$fValue.'%');
+						});
+						break;
+					case 'phone';
+						$clients->where('phone', 'like', '%'.$fValue.'%');
+						break;
+					case 'created_at_from';
+						$clients->where('clients.created_at', '>=', $fValue);
+						break;
+					case 'created_at_to';
+						$clients->where('clients.created_at', '<=', $fValue);
+						break;
+					case 'updated_at_from';
+						$clients->where('clients.updated_at', '>=', $fValue);
+						break;
+					case 'updated_at_to';
+						$clients->where('clients.updated_at', '<=', $fValue);
+						break;
+
+				}
+			}
+		}
 
 		return \Datatable::query($clients)
 			->showColumns('id', 'name', 'phone', 'created_at', 'updated_at')
