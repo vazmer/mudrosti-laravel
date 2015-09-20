@@ -11,8 +11,14 @@
 |
 */
 
+Route::pattern('slug', '[a-z0-9-]+');
+
 Route::get('/', 'HomeController@index');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
     require __DIR__.'/admin_routes.php';
+});
+
+Route::group(['prefix' => 'api', 'namespace' => 'Api'], function(){
+	require __DIR__.'/api_routes.php';
 });

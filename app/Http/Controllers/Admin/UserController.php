@@ -5,9 +5,8 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-use Vazmer\Media\Media;
-
-class UserController extends Controller {
+class UserController extends Controller
+{
 
 	/**
 	 * Display a listing of the resource.

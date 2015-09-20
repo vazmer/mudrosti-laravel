@@ -200,7 +200,7 @@ var Metronic = function() {
         if (!$().uniform) {
             return;
         }
-        var test = $("input[type=checkbox]:not(.toggle, .make-switch, .icheck), input[type=radio]:not(.toggle, .star, .make-switch, .icheck)");
+        var test = $("input[type=checkbox]:not(.toggle, .md-check, .md-radiobtn, .make-switch, .icheck), input[type=radio]:not(.toggle, .md-check, .md-radiobtn, .star, .make-switch, .icheck)");
         if (test.size() > 0) {
             test.each(function() {
                 if ($(this).parents(".checker").size() === 0) {
@@ -210,6 +210,72 @@ var Metronic = function() {
             });
         }
     };
+
+    // Handlesmaterial design checkboxes
+    var handleMaterialDesign = function() {
+
+        // Material design ckeckbox and radio effects
+        $('body').on('click', '.md-checkbox > label, .md-radio > label', function() {
+            var the = $(this);
+            // find the first span which is our circle/bubble
+            var el = $(this).children('span:first-child');
+              
+            // add the bubble class (we do this so it doesnt show on page load)
+            el.addClass('inc');
+              
+            // clone it
+            var newone = el.clone(true);  
+              
+            // add the cloned version before our original
+            el.before(newone);  
+              
+            // remove the original so that it is ready to run on next click
+            $("." + el.attr("class") + ":last", the).remove();
+        }); 
+
+        if ($('body').hasClass('page-md')) { 
+            // Material design click effect
+            // credit where credit's due; http://thecodeplayer.com/walkthrough/ripple-click-effect-google-material-design       
+            $('body').on('click', 'a.btn, button.btn, input.btn, label.btn', function(e) { 
+                var element, circle, d, x, y;
+
+                element = $(this);
+      
+                if(element.find(".md-click-circle").length == 0) {
+                    element.prepend("<span class='md-click-circle'></span>");
+                }
+                    
+                circle = element.find(".md-click-circle");
+                circle.removeClass("md-click-animate");
+                
+                if(!circle.height() && !circle.width()) {
+                    d = Math.max(element.outerWidth(), element.outerHeight());
+                    circle.css({height: d, width: d});
+                }
+                
+                x = e.pageX - element.offset().left - circle.width()/2;
+                y = e.pageY - element.offset().top - circle.height()/2;
+                
+                circle.css({top: y+'px', left: x+'px'}).addClass("md-click-animate");
+            });
+        }
+
+        // Floating labels
+        var handleInput = function(el) {
+            if (el.val() != "") {
+                el.addClass('edited');
+            } else {
+                el.removeClass('edited');
+            }
+        } 
+
+        $('body').on('keydown', '.form-md-floating-label > .form-control', function(e) { 
+            handleInput($(this));
+        });
+        $('body').on('blur', '.form-md-floating-label > .form-control', function(e) { 
+            handleInput($(this));
+        });        
+    }
 
     // Handles custom checkboxes & radios using jQuery iCheck plugin
     var handleiCheck = function() {
@@ -463,7 +529,8 @@ var Metronic = function() {
             handleInit(); // initialize core variables
             handleOnResize(); // set and handle responsive    
 
-            //UI Component handlers            
+            //UI Component handlers     
+            handleMaterialDesign(); // handle material design       
             handleUniform(); // hanfle custom radio & checkboxes
             handleiCheck(); // handles custom icheck radio and checkboxes
             handleBootstrapSwitch(); // handle bootstrap switch plugin

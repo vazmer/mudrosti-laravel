@@ -1,3 +1,6 @@
+<?php $id = 'clients'; ?>
+<?php $class = 'table table-hover table-condensed'; ?>
+
 <table id="{{ $id }}" class="{{ $class }}">
     <colgroup>
         @for ($i = 0; $i < count($columns); $i++)
@@ -24,5 +27,5 @@
 </table>
 
 @if (!$noScript)
-    @include(Config::get('packages.chumper_datatable.table.script_view'), array('id' => $id, 'options' => $options, 'callbacks' =>  $callbacks))
+{{--    @include(Config::get('packages.chumper_datatable.table.script_view'), array('id' => $id, 'options' => $options, 'callbacks' =>  $callbacks))--}}
 @endif

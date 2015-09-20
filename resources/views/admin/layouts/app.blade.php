@@ -42,6 +42,7 @@
     @include('admin.partials._footer')
 
     @include('admin.partials.scripts')
+    @yield('modal')
     @yield('scripts')
 </body>
 </html>

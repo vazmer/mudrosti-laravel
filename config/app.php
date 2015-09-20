@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://jobs.dev',
+	'url' => 'http://mudrosti.localhost',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -145,10 +145,10 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-        'Chumper\Datatable\DatatableServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
-		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
+		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+		'yajra\Datatables\DatatablesServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider',
 	),
 
 	/*
@@ -198,8 +198,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Form'      => 'Illuminate\Html\FormFacade',
-        'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
-		'Flash' 	=> 'Laracasts\Flash\Flash'
+		'Flash' 	=> 'Laracasts\Flash\Flash',
+		'Datatables' => 'yajra\Datatables\Datatables',
 	],
 
 ];

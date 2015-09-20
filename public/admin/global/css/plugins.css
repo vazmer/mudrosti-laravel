@@ -136,6 +136,17 @@ Bootstrap Daterangepicker
   display: block;
 }
 
+.daterangepicker .ranges {
+  width: 170px;
+}
+.daterangepicker .ranges ul > li.active {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+
 .daterangepicker .ranges .btn {
   margin-top: 10px;
 }
@@ -502,7 +513,7 @@ Toastr Notifications
   width: 11px;
   height: 16px;
   background-repeat: no-repeat !important;
-  background-image: url("../../../../../../../Users/Bojan/Desktop/global/img/portlet-remove-icon-white.png") !important;
+  background-image: url("../img/portlet-remove-icon-white.png") !important;
 }
 
 .toast-top-center {
@@ -737,8 +748,8 @@ Bootstrap GtreeTable
 .gtreetable .node-icon-handle,
 .gtreetable .node-icon-ce,
 .gtreetable .node-icon-type {
-  opacity: 0.6;
-  filter: alpha(opacity=60);
+  opacity: 0.6 ;
+  filter: alpha(opacity=60) ;
 }
 
 /***
@@ -905,11 +916,11 @@ Datatables Plugin(in v1.3)
 }
 
 .dataTable .row-details.row-details-close {
-  background: url("../../../../../../../Users/Bojan/Desktop/global/img/datatable-row-openclose.png") no-repeat 0 0;
+  background: url("../img/datatable-row-openclose.png") no-repeat 0 0;
 }
 
 .dataTable .row-details.row-details-open {
-  background: url("../../../../../../../Users/Bojan/Desktop/global/img/datatable-row-openclose.png") no-repeat 0 -23px;
+  background: url("../img/datatable-row-openclose.png") no-repeat 0 -23px;
 }
 
 .dataTable .details {
@@ -1514,7 +1525,7 @@ Dashboard Charts(new in v1.2.1)
 jQuery File Upload
 ***/
 .blueimp-gallery .close {
-  background-image: url("../../../../../../../Users/Bojan/Desktop/global/img/portlet-remove-icon-white.png") !important;
+  background-image: url("../img/portlet-remove-icon-white.png") !important;
   margin-top: -2px;
 }
 
@@ -2345,22 +2356,22 @@ div[class*='iradio_'] {
   height: 20px;
   width: 20px;
   background: #000000;
-  opacity: 0.6;
-  filter: alpha(opacity=60);
+  opacity: 0.6 ;
+  filter: alpha(opacity=60) ;
 }
 .icheck-colors > li:first-child {
   margin-left: 0;
 }
 .icheck-colors > li:hover {
-  opacity: 1;
-  filter: alpha(opacity=100);
+  opacity: 1 ;
+  filter: alpha(opacity=100) ;
   cursor: pointer;
 }
 .icheck-colors > li.active {
   height: 26px;
   margin-top: 0;
-  opacity: 0.6;
-  filter: alpha(opacity=60);
+  opacity: 0.6 ;
+  filter: alpha(opacity=60) ;
 }
 .icheck-colors > li.red {
   background: #d54e21;
@@ -2396,4 +2407,8 @@ AngularJS UI-select
 .ui-select-match-close {
   margin-top: 5px !important;
   margin-left: 5px !important;
+}
+
+.minicolors-swatch {
+  border: 0;
 }

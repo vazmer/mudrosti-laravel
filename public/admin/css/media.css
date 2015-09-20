@@ -1,0 +1,7 @@
+.thumbnail{
+    cursor: pointer;
+}
+
+.thumbnail.active{
+    background-color: #428bca;
+}

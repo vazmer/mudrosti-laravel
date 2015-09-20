@@ -8,17 +8,38 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-use Vazmer\Media\MediaTrait;
-use Vazmer\Media\MediaInterface;
+//use Vazmer\Media\MediaTrait;
+//use Vazmer\Media\MediaInterface;
 
 
 /**
  * Class User
+ *
  * @package App
+ * @property integer $id
+ * @property string $first_name
+ * @property string $email
+ * @property string $password
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @property string $last_name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Vazmer\Media\Media[] $media
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereFirstName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereLastName($value)
  */
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, MediaInterface {
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+{
 
-	use Authenticatable, CanResetPassword, SoftDeletes, MediaTrait;
+	use Authenticatable, CanResetPassword, SoftDeletes;
 
 	/**
 	 * The database table used by the model.
@@ -46,10 +67,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	public $media_fields = array(
-		'avatar' => 'single'
-	);
-
+	public $media_fields = ['avatar'];
 
 	/**
 	 * Sets password attribute

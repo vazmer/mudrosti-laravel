@@ -27,6 +27,51 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="{{ route('admin.categories.index') }}">
+                    <i class="icon-book-open"></i>
+                    <span class="title">Categories</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('admin.categories.index') }}">View all</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.categories.create') }}">Create category</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{{ route('admin.authors.index') }}">
+                    <i class="icon-book-open"></i>
+                    <span class="title">Authors</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('admin.authors.index') }}">View all</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.authors.create') }}">Create author</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{{ route('admin.quotes.index') }}">
+                    <i class="icon-book-open"></i>
+                    <span class="title">Quotes</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('admin.quotes.index') }}">View all</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.quotes.create') }}">Create quote</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>
