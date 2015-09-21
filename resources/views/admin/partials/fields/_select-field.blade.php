@@ -3,5 +3,5 @@
 <!--- {{ $label }} Field --->
 <div class="form-group">
     {!! Form::label($id, $label.':') !!}
-    {!! Form::select($id, ['' => 'Choose'] + $list, $selected, array_merge(['class' => 'form-control'], $additionalOptions)) !!}
+    {!! Form::select($id, ['' => ''] + $list, $selected, array_merge(['class' => 'form-control'], $additionalOptions)) !!}
 </div>
