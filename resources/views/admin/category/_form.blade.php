@@ -6,7 +6,7 @@
 
 @include('admin.partials.fields._text-field', ['id' => 'name', 'label' => 'Name'])
 
-@include('admin.partials.fields._select-field', ['id' => 'parent_id', 'label' => 'Parent category', 'options' => $categories])
+@include('admin.partials.fields._select-field', ['id' => 'parent_id', 'label' => 'Parent category', 'list' => $categories])
 
 @include('admin.partials.fields._text-field', ['id' => 'slug', 'label' => 'Slug'])
 

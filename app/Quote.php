@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
  * @property integer $sort_order
- * @property-read \App\Media $media
+ * @property-read \Vazmer\Media\Media $media
  * @method static \Illuminate\Database\Query\Builder|\App\Quote whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Quote whereQuoteCollectionId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Quote whereMediaId($value)
@@ -57,7 +57,7 @@ class Quote extends Model
 	 */
 	public function media()
 	{
-		return $this->belongsTo('App\Media', 'media_id');
+		return $this->belongsTo('Vazmer\Media\Media', 'media_id');
 	}
 
 	/**
@@ -66,5 +66,16 @@ class Quote extends Model
 	public function author()
 	{
 		return $this->belongsTo('App\Author', 'author_id');
+	}
+
+
+	/**
+	 * Get the categories associated with the given quote.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function categories()
+	{
+		return $this->belongsToMany('App\Category');
 	}
 }

@@ -29,8 +29,8 @@ class QuoteController extends Controller
      */
     public function create()
     {
-		$authors = Author::getSelectOptions();
-		$categories = Category::getSelectOptions();
+		$authors = Author::lists('name', 'id')->all();
+		$categories = Category::lists('name', 'id')->all();
 
 		return view('admin.quote.create')
 			->withTitle('Create quote')
@@ -76,8 +76,9 @@ class QuoteController extends Controller
 	 */
 	public function edit(Quote $quote)
 	{
-		$authors = Author::getSelectOptions();
-		$categories = Category::getSelectOptions();
+		$authors = Author::lists('name', 'id')->all();
+		$categories = Category::lists('name', 'id')->all();
+		$selectedCategoriesIds = $quote->categories->lists('id')->all();
 
 		return view('admin.quote.edit', compact('quote'))
 			->withTitle('Edit: '.$quote->title)
@@ -98,7 +99,13 @@ class QuoteController extends Controller
     {
 		$quote->update($request->all());
 
-		//var_dump($request->all()); die;
+		/**
+		 * @var array $selectedCategoriesIds
+		 * empty items are removed
+		 */
+		$selectedCategoriesIds = array_except($request->input('categories'), ['']);
+
+		$quote->categories()->sync($selectedCategoriesIds);
 
 		flash()->success("Quote has been successfully updated!");
 

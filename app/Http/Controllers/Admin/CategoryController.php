@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
 		flash()->success("Category has been successfully created!");
 
-		return redirect()->route('admin.category.edit', $category)->withInput();
+		return redirect()->route('admin.categories.edit', $category)->withInput();
 	}
 
 	/**
@@ -73,17 +73,7 @@ class CategoryController extends Controller
 		return view('admin.category.edit', compact('category'))
 			->withTitle('Edit: '.$category->name)
 			->withMedia($category->media()->getResults())
-			->withCategories($this->getCategoriesSelectOptions());
-	}
-
-
-	/**
-	 * Get key-mapped array of categories with empty first item (label)
-	 *
-	 * @return array
-	 */
-	function getCategoriesSelectOptions() {
-		return array_merge(['0'=>'Choose'], Category::keyValueMapped(Category::all()));
+			->withCategories(Category::getSelectOptions());
 	}
 
 	/**

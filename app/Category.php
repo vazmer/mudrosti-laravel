@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @property-read \App\Media $media
+ * @property-read \Vazmer\Media\Media $media
  * @method static \Illuminate\Database\Query\Builder|\App\Category whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Category whereParentId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Category whereMediaId($value)
@@ -55,7 +55,7 @@ class Category extends Model
 	 */
 	public function media()
 	{
-		return $this->belongsTo('App\Media', 'media_id');
+		return $this->belongsTo('Vazmer\Media\Media', 'media_id');
 	}
 
 	/**
@@ -74,21 +74,13 @@ class Category extends Model
 		return $this->hasMany('App\Category', 'parent_id');
 	}
 
-	public static function keyValueMapped($items) {
-		$categories = array();
-		$items->map(function($item) use (&$categories) {
-			$categories[$item->id] = $item->name;
-		});
-		return $categories;
-	}
-
 	/**
-	 * Get key-mapped array of categories with empty first item (label)
+	 * Get the quotes associated with the given category.
 	 *
-	 * @return array
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
-	public static function getSelectOptions() {
-		return array_merge(['0'=>'Choose'], Category::keyValueMapped(Category::all()));
+	public function quotes()
+	{
+		return $this->belongsToMany('App\Quote');
 	}
-
 }

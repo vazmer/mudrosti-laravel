@@ -149,6 +149,7 @@ return [
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'yajra\Datatables\DatatablesServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider',
+		'App\Providers\BladeServiceProvider',
 	),
 
 	/*

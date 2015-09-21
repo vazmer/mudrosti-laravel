@@ -33,23 +33,6 @@ class Author extends Model {
 	 */
 	public function media()
 	{
-		return $this->belongsTo('App\Media', 'media_id');
-	}
-
-	public static function keyValueMapped($items) {
-		$categories = array();
-		$items->map(function($item) use (&$categories) {
-			$categories[$item->id] = $item->name;
-		});
-		return $categories;
-	}
-
-	/**
-	 * Get key-mapped array of categories with empty first item (label)
-	 *
-	 * @return array
-	 */
-	public static function getSelectOptions() {
-		return array_merge(['0'=>'Choose'], Author::keyValueMapped(Author::all()));
+		return $this->belongsTo('Vazmer\Media\Media', 'media_id');
 	}
 }
