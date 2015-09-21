@@ -27,9 +27,11 @@ class CategoryController extends Controller
 	 */
 	public function create()
 	{
+		$categories = Category::lists('name', 'id')->all();
+
 		return view('admin.category.create')
 			->withTitle('Create category')
-			->withCategories($this->getCategoriesSelectOptions());
+			->withCategories($categories);
 	}
 
 
@@ -70,10 +72,12 @@ class CategoryController extends Controller
 	 */
 	public function edit(Category $category)
 	{
+		$categories = Category::lists('name', 'id')->all();
+
 		return view('admin.category.edit', compact('category'))
 			->withTitle('Edit: '.$category->name)
 			->withMedia($category->media()->getResults())
-			->withCategories(Category::getSelectOptions());
+			->withCategories($categories);
 	}
 
 	/**

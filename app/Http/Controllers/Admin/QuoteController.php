@@ -78,7 +78,6 @@ class QuoteController extends Controller
 	{
 		$authors = Author::lists('name', 'id')->all();
 		$categories = Category::lists('name', 'id')->all();
-		$selectedCategoriesIds = $quote->categories->lists('id')->all();
 
 		return view('admin.quote.edit', compact('quote'))
 			->withTitle('Edit: '.$quote->title)
