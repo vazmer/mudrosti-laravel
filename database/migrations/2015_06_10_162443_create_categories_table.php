@@ -33,6 +33,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('quotes');
+        Schema::drop('categories');
     }
 }

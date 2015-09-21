@@ -12,13 +12,13 @@ class CreateQuotesCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('quotes_categories', function (Blueprint $table) {
+        Schema::create('quote_category', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('quote_id')->unsigned();
+			$table->integer('quote_id')->unsigned()->index();
 			$table->foreign('quote_id')
 				->references('id')->on('quotes')
 				->onDelete('cascade');
-			$table->integer('category_id')->unsigned();
+			$table->integer('category_id')->unsigned()->index();
 			$table->foreign('category_id')
 				->references('id')->on('categories')
 				->onDelete('cascade');
@@ -32,6 +32,6 @@ class CreateQuotesCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('quotes_categories');
+        Schema::drop('quote_category');
     }
 }
