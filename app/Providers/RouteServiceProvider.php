@@ -26,6 +26,7 @@ class RouteServiceProvider extends ServiceProvider {
 
 		$router->model('users', 'App\User');
 		$router->model('quotes', 'App\Quote');
+		$router->model('categories-of-images', 'App\ImageCategory');
 		$router->model('categories', 'App\Category');
 		$router->model('authors', 'App\Author');
 	}

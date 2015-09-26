@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Author;
 use App\Category;
+use App\ImageCategory;
 use App\Quote;
 use App\Http\Requests\QuoteRequest;
 use Illuminate\Http\Request;
@@ -31,11 +32,13 @@ class QuoteController extends Controller
     {
 		$authors = Author::lists('name', 'id')->all();
 		$categories = Category::lists('name', 'id')->all();
+		$categoriesOfImages = ImageCategory::lists('name', 'id')->all();
 
 		return view('admin.quote.create')
 			->withTitle('Create quote')
 			->withAuthors($authors)
-			->withCategories($categories);
+			->withCategories($categories)
+			->withCategoriesOfImages($categoriesOfImages);
 	}
 
 
@@ -78,11 +81,13 @@ class QuoteController extends Controller
 	{
 		$authors = Author::lists('name', 'id')->all();
 		$categories = Category::lists('name', 'id')->all();
+		$categoriesOfImages = ImageCategory::lists('name', 'id')->all();
 
 		return view('admin.quote.edit', compact('quote'))
 			->withTitle('Edit: '.$quote->title)
 			->withAuthors($authors)
-			->withCategories($categories);
+			->withCategories($categories)
+			->with('categoriesOfImages', $categoriesOfImages);
 	}
 
 	/**
@@ -104,7 +109,14 @@ class QuoteController extends Controller
 		 */
 		$selectedCategoriesIds = array_except($request->input('categories'), ['']);
 
+		/**
+		 * @var array $selectedCategoriesOfImagesIds
+		 * empty items are removed
+		 */
+		$selectedCategoriesOfImagesIds = array_except($request->input('categories_of_images'), ['']);
+
 		$quote->categories()->sync($selectedCategoriesIds);
+		$quote->categoriesOfImages()->sync($selectedCategoriesOfImagesIds);
 
 		flash()->success("Quote has been successfully updated!");
 

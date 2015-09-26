@@ -43,6 +43,21 @@
                 </ul>
             </li>
             <li>
+                <a href="{{ route('admin.categories-of-images.index') }}">
+                    <i class="icon-book-open"></i>
+                    <span class="title">Categories of Images</span>
+                    <span class="arrow "></span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('admin.categories-of-images.index') }}">View all</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.categories-of-images.create') }}">Create category of images</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="{{ route('admin.authors.index') }}">
                     <i class="icon-book-open"></i>
                     <span class="title">Authors</span>

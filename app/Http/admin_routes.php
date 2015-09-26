@@ -22,6 +22,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('categories', 'CategoryController');
 	Route::get('api/categories', array('as'=>'api.categories', 'uses'=>'CategoryController@getDatatable'));
 
+	Route::resource('categories-of-images', 'ImageCategoryController');
+	Route::get('api/categories-of-images', array('as'=>'api.categories-of-images', 'uses'=>'ImageCategoryController@getDatatable'));
+
 	Route::resource('authors', 'AuthorController');
 	Route::get('api/authors', array('as'=>'api.authors', 'uses'=>'AuthorController@getDatatable'));
 });

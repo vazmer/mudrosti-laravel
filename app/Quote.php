@@ -78,4 +78,14 @@ class Quote extends Model
 	{
 		return $this->belongsToMany('App\Category');
 	}
+
+	/**
+	 * Get the categories of images associated with the given quote.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function categoriesOfImages()
+	{
+		return $this->belongsToMany('App\ImageCategory');
+	}
 }
