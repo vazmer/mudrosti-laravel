@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Quote;
+use App\Author;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 use Response;
 
-class QuoteController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class QuoteController extends Controller
     {
 		try
 		{
-			$quotes = Quote::all();
+			$quotes = Author::all();
 			$statusCode = 200;
 			$response = [
 				'data'  => $quotes
@@ -41,19 +41,19 @@ class QuoteController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param $slug
+	 * @param $id
 	 *
 	 * @return Response
 	 * @internal param int $id
 	 */
-    public function show($slug)
+    public function show($id)
     {
 		try
 		{
-			$quote = Quote::where(['slug'=>$slug])->firstOrFail();
+			$data = Author::where(['id'=>$id])->firstOrFail();
 			$statusCode = 200;
 			$response = [
-				'data'  => $quote
+				'data'  => $data
 			];
 		}
 		catch (Exception $e)
@@ -65,4 +65,33 @@ class QuoteController extends Controller
 			return Response::json($response, $statusCode);
 		}
     }
+
+	/**
+	 * Display the quotes for given author.
+	 *
+	 * @param $id
+	 *
+	 * @return Response
+	 * @internal param int $id
+	 */
+	public function quotes($id)
+	{
+		try
+		{
+			$author = Author::find($id);
+
+			$statusCode = 200;
+			$response = [
+				'data'  => $author->quotes()->get()
+			];
+		}
+		catch (Exception $e)
+		{
+			$statusCode = 400;
+		}
+		finally
+		{
+			return Response::json($response, $statusCode);
+		}
+	}
 }

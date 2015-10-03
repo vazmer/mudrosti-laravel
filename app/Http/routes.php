@@ -11,9 +11,10 @@
 |
 */
 
+Route::pattern('id', '[0-9]+');
 Route::pattern('slug', '[a-z0-9-]+');
 
-Route::get('/', 'HomeController@index');
+Route::get('/{slug}', function() { return View::make('index-ng'); });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
     require __DIR__.'/admin_routes.php';

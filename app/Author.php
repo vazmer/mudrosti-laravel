@@ -35,4 +35,12 @@ class Author extends Model {
 	{
 		return $this->belongsTo('Vazmer\Media\Media', 'media_id');
 	}
+
+	/**
+	 * Get the quotes that belongs to author.
+	 */
+	public function quotes()
+	{
+		return $this->hasMany('App\Quote');
+	}
 }
