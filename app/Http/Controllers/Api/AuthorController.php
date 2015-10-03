@@ -41,16 +41,16 @@ class AuthorController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param $id
+	 * @param $slug
 	 *
 	 * @return Response
-	 * @internal param int $id
+	 * @internal param int $slug
 	 */
-    public function show($id)
+    public function show($slug)
     {
 		try
 		{
-			$data = Author::where(['id'=>$id])->firstOrFail();
+			$data = Author::where(['slug'=>$slug])->firstOrFail();
 			$statusCode = 200;
 			$response = [
 				'data'  => $data
@@ -69,16 +69,16 @@ class AuthorController extends Controller
 	/**
 	 * Display the quotes for given author.
 	 *
-	 * @param $id
+	 * @param $slug
 	 *
 	 * @return Response
-	 * @internal param int $id
+	 * @internal param int $slug
 	 */
-	public function quotes($id)
+	public function quotes($slug)
 	{
 		try
 		{
-			$author = Author::find($id);
+			$author = Author::where(['slug'=>$slug])->firstOrFail();
 
 			$statusCode = 200;
 			$response = [

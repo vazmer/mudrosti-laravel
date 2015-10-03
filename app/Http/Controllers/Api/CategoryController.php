@@ -41,16 +41,16 @@ class CategoryController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param $id
+	 * @param $slug
 	 *
 	 * @return Response
-	 * @internal param int $id
+	 * @internal param int $slug
 	 */
-    public function show($id)
+    public function show($slug)
     {
 		try
 		{
-			$data = Category::where(['id'=>$id])->firstOrFail();
+			$data = Category::where(['slug'=>$slug])->firstOrFail();
 			$statusCode = 200;
 			$response = [
 				'data'  => $data
@@ -69,16 +69,16 @@ class CategoryController extends Controller
 	/**
 	 * Display the quotes for given category.
 	 *
-	 * @param $id
+	 * @param $slug
 	 *
 	 * @return Response
-	 * @internal param int $id
+	 * @internal param int $slug
 	 */
-	public function quotes($id)
+	public function quotes($slug)
 	{
 		try
 		{
-			$category = Category::find($id);
+			$category = Category::where(['slug'=>$slug])->firstOrFail();
 
 			$statusCode = 200;
 			$response = [
