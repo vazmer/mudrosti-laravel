@@ -1,0 +1,12 @@
+{
+  "name": "mudrosti",
+  "devDependencies": {
+    "breakpoint-sass": "^2.5.0",
+    "jquery_appear": "^0.3.4",
+    "imagesloaded": "^3.1.8",
+    "normalize-css": "^3.0.3"
+  },
+  "dependencies": {
+    "susy": "^2.2.2"
+  }
+}
