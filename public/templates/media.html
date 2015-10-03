@@ -1,0 +1,33 @@
+<section class="post-media-list">
+    <article ng-repeat="media in post.media.items" class="post-media" ng-class="{active: isActiveMedia(media)}">
+        <header class="post-media-headline-wrapper">
+            <h1 class="post-media-headline" ng-bind-html="media.excerpt | toTrusted"></h1>
+        </header>
+        <figure class="post-media-image bg-cover" style="background-image: url( {{ media.source }} );"></figure>
+    </article>
+
+    <aside class="post-media-list-nav">
+        <a href="javascript:void(0)">
+            <div class="post-media-list-nav-prev" ng-click="goToPrevMedia()" ng-hide="isActiveFirstMedia()">
+                <div class="nav-inner">
+                    <div class="nav-arrow"></div>
+                    <div class="nav-thumbnail-wrapper">
+                        <div class="nav-counter">{{post.media.prevItem.counter}}/{{post.media.items.length}}</div>
+                        <img ng-src="{{post.media.prevItem.attachment_meta.sizes.thumbnail.url}}" alt=""/>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="javascript:void(0)">
+            <div class="post-media-list-nav-next" ng-click="goToNextMedia()" ng-hide="isActiveLastMedia()">
+                <div class="nav-inner">
+                    <div class="nav-arrow"></div>
+                    <div class="nav-thumbnail-wrapper">
+                        <div class="nav-counter">{{post.media.nextItem.counter}}/{{post.media.items.length}}</div>
+                        <img ng-src="{{post.media.nextItem.attachment_meta.sizes.thumbnail.url}}" alt=""/>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </aside>
+</section>

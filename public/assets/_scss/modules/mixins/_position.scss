@@ -1,0 +1,19 @@
+// Shorthands
+// ---
+
+@mixin absolute($args: null null null null) {
+  @include position(absolute, $args);
+}
+
+@mixin fixed($args: null null null null) {
+  @include position(fixed, $args);
+}
+
+@mixin relative($args: null null null null) {
+  @include position(relative, $args);
+}
+
+@mixin absolute-center(){
+  @include absolute(0 0 0 0);
+  margin: auto;
+}

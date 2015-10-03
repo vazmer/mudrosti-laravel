@@ -1,0 +1,15 @@
+.bg{
+
+  &-cover{
+    @include relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &-repeat{
+    background-repeat: repeat;
+  }
+
+}
+

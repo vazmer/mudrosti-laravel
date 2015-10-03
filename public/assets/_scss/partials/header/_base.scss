@@ -1,0 +1,27 @@
+$header-height: rem(80);
+
+.header{
+  @include transition;
+  @include fixed(0 0 null 0);
+  @include transform(translateY(-100%));
+  @include clearfix;
+  width: 100%;
+  background: rgba(#000, .7);
+  z-index: 1;
+  height: $header-height;
+  border-bottom: 1px solid rgba(#fff, .1);
+
+  &.loaded{
+    @include transform(translateY(0));
+  }
+
+  .logo{
+    float: left;
+    height: $header-height;
+    line-height: $header-height;
+
+    img{
+      vertical-align: middle;
+    }
+  }
+}

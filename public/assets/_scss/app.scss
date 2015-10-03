@@ -1,0 +1,22 @@
+@import "partials/setup/base";
+
+// Header
+@import "partials/header/base";
+
+// Footer
+@import "partials/footer/base";
+
+// Nav
+@import "partials/nav/default";
+@import "partials/nav/header";
+@import "partials/nav/footer";
+
+// Pages
+@import "partials/page/home";
+
+// Post
+@import "partials/post/post-media";
+
+// Sliders
+@import "partials/slider/slider-base";
+@import "partials/slider/slider-fullscreen";

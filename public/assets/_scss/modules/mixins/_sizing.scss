@@ -1,0 +1,15 @@
+// Sizing stuff
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin calc($property, $expression, $important: false) {
+  @if $important == true {
+    $important-text: "!important";
+  } @else {
+    $important-text: "";
+  }
+  #{$property}: -webkit-calc(#{$expression}) #{$important-text};
+  #{$property}: calc(#{$expression}) #{$important-text};
+}

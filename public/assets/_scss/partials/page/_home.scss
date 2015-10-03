@@ -1,0 +1,9 @@
+.home{
+
+  &-intro{
+    @extend .bg-cover;
+    height: rem(800);
+    margin-bottom: rem(4);
+  }
+
+}

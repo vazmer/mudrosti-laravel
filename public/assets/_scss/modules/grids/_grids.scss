@@ -1,0 +1,179 @@
+//grid classes names
+$container-class-name: 'container' !default;
+$container-max-width: 1180px !default;
+$row-class-name: 'row' !default;
+$col-class-prefix: 'grid' !default;
+$col-class-hidden-prefix: 'hidden' !default;
+$col-class-visible-prefix: 'visible' !default;
+$col-class-push-prefix: 'push' !default;
+$col-class-pull-prefix: 'pull' !default;
+
+//grid sizes
+$columns: 12 !default;
+$row-width: $container-max-width !default;
+$gutter-width: 20px !default;
+$gutters: $gutter-width / ($row-width / $columns);
+
+//default susy layout
+$susy: (
+        columns: $columns,
+        container: $row-width,
+        column-width: $row-width / $columns,
+        gutters: if($row-width == 100%, 0, $gutters), //percents are not dividable by pixels, we'll set gutters to 0, and then set padding manually if gutter-position is inside-static
+        gutter-override: if($row-width == 100%, no-gutter, null),
+        gutter-position: inside-static,
+        last-flow: from,
+        use-custom: (
+                rem: true
+        )
+);
+
+//define breakpoints
+$breakpoints: (
+        small: 0, //from 0 to 639
+        medium: 640px,
+        large: 1024px,
+        xlarge: 1440px,
+        xxlarge: 1920px,
+);
+
+$mobile-from: small !default;
+$mobile-to: medium !default;
+$desktop-breakpoint: medium !default;
+
+@mixin media-min($bp-name) {
+  @if(map_has_key($breakpoints, $bp-name)) {
+    @include breakpoint(map_get($breakpoints, $bp-name)) {
+      @content;
+    }
+  }
+}
+
+@mixin media-max($bp-name) {
+  @if(map_has_key($breakpoints, $bp-name)) {
+    @include breakpoint(max-width map_get($breakpoints, $bp-name)) {
+      @content;
+    }
+  }
+}
+
+@mixin media-between($bp-name-from, $bg-name-to) {
+  @if(map_has_key($breakpoints, $bp-name-from) AND map_has_key($breakpoints, $bg-name-to)) {
+    @include breakpoint(map_get($breakpoints, $bp-name-from) map_get($breakpoints, $bg-name-to)) {
+      @content;
+    }
+  }
+}
+
+@mixin mobile(){
+  @include media-between($mobile-from, $mobile-to){
+    @content;
+  }
+}
+
+@mixin desktop(){
+  @include media-min($desktop-breakpoint){
+    @content;
+  }
+}
+
+@function grid-layout-key($key, $layout: $susy){
+  @if(map-has-key($layout, $key) == false){
+    @return false;
+  } @else {
+    @return map-get($layout, $key);
+  }
+}
+
+//set layout map based on given sizes
+@function layout-math(
+$columns: $columns,
+$row-width: $row-width,
+$gutter-width: $gutter-width,
+$gutters: $gutters
+){
+  @return (
+          columns: $columns,
+          container: $row-width,
+          column-width: $row-width / $columns,
+          gutters: if($row-width == 100%, 0, $gutter-width / ($row-width / $columns)), //percents are not dividable by pixels, we'll set gutters to 0, and then set padding manually if gutter-position is inside-static
+          gutter-override: if($row-width == 100%, $gutter-width, null),
+  );
+}
+
+@mixin generate_grid_classes(
+$columns: $columns,
+$row-width: $row-width,
+$gutter-width: $gutter-width,
+$row-class-name: $row-class-name,
+$col-class-prefix: $col-class-prefix,
+$breakpoints: $breakpoints,
+$layout: ()
+){
+
+  //set layout map based on given sizes, then merge it with default layout
+  $layout: map-merge($layout, layout-math($columns, $row-width, $gutter-width, $gutters));
+
+  //merge user's layout with default one
+  $layout: map-merge($susy, $layout);
+
+
+  //responsive grids - from small to large
+  @each $bp-name, $bp-value in $breakpoints{
+
+    // include breakpoint
+    @include breakpoint($bp-value){
+
+      @for $i from 1 to $columns+1{
+
+        // Define individual grids
+        .#{$col-class-prefix}-#{$bp-name}-#{$i}{
+          @include span($i at $columns of $layout);
+        }
+
+        // hide grid
+        .#{$col-class-hidden-prefix}-#{$bp-name}{
+          display: none !important;
+        }
+
+        // show grid
+        .#{$col-class-visible-prefix}-#{$bp-name}{
+          display: block !important;
+        }
+
+        // push grid
+        .#{$col-class-push-prefix}-#{$bp-name}-#{$i}{
+          @include push($i);
+        }
+
+        // pull grid
+        .#{$col-class-pull-prefix}-#{$bp-name}-#{$i}{
+          @include pull($i);
+        }
+
+      }
+
+      //manually set gutter if layout is fullwidth
+      @if($row-width == 100% and grid-layout-key(gutter-position, $layout) == inside-static){
+        [class^="#{$col-class-prefix}-#{$bp-name}-"]{
+          padding-left: $gutter-width;
+          padding-right: $gutter-width;
+        }
+      }
+
+    }
+  }
+
+  //row
+  .#{$row-class-name}{
+    @include container($layout);
+  }
+
+  // set container's max-width
+  .#{$container-class-name}{
+    max-width: $container-max-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+

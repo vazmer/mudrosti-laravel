@@ -1,0 +1,19 @@
+.header-nav{
+  @extend .nav;
+
+  &-wrapper{
+    float: right;
+  }
+
+  li{
+    font-size: rem(18);
+    font-weight: bold;
+
+    a{
+      text-transform: uppercase;
+      font-size: rem(18);
+      line-height: $header-height;
+    }
+  }
+
+}

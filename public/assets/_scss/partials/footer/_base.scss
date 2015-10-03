@@ -1,0 +1,21 @@
+.footer{
+  @include transform(translateY(100%));
+  @include transition;
+  @include fixed(null null 0 null);
+  @include clearfix;
+  @include background-image(linear-gradient(top, transparent 0, #000 100%));
+  width: 100%;
+  padding: rem(30) 0;
+
+  &.loaded{
+    @include transform(translateY(0));
+  }
+
+  &-inner{
+
+  }
+
+  &-copyright{
+    float: left;
+  }
+}

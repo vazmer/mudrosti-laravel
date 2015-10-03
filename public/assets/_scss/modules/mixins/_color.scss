@@ -1,0 +1,7 @@
+@function adapt-color($bg-color: $white, $dark: $body-font-color, $light: $white){
+  @if lightness($bg-color) > 40{
+    @return $dark;
+  } @else {
+    @return $light;
+  }
+}
