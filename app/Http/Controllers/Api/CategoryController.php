@@ -82,7 +82,7 @@ class CategoryController extends Controller
 
 			$statusCode = 200;
 			$response = [
-				'data'  => $category->quotes()->get()
+				'data'  => $category->quotesWithMediaAndAuthor()
 			];
 		}
 		catch (Exception $e)

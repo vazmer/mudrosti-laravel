@@ -41,7 +41,7 @@
             };
         }
 
-        //get post
+        //get quote
         var getPost = function () {
             var postLoaded = function(data){
                 $scope.post = data;

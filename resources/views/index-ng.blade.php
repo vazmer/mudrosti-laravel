@@ -10,11 +10,10 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto+Slab:100"/>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Dosis:200,300,400,700"/>
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- load angular and angular route via CDN -->
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
-    <!--<script src="bower_components/angular-animate/angular-animate.min.js"></script>-->
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="app/prod/ng-app.js"></script>
 </head>
 <body ng-app="app">

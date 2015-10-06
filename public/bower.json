@@ -4,7 +4,9 @@
     "breakpoint-sass": "^2.5.0",
     "jquery_appear": "^0.3.4",
     "imagesloaded": "^3.1.8",
-    "normalize-css": "^3.0.3"
+    "normalize-css": "^3.0.3",
+    "bourbon": "^4.2.5",
+    "susy": "^2.2.6"
   },
   "dependencies": {
     "susy": "^2.2.2"

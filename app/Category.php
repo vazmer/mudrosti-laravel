@@ -83,4 +83,15 @@ class Category extends Model
 	{
 		return $this->belongsToMany('App\Quote');
 	}
+
+	public function quotesWithMediaAndAuthor()
+	{
+		$quotes = $this->quotes()->get()->map(function ($quote) {
+			$media = $quote->categoriesOfImages()->get()->first();
+			$quote->image_url = $media->media->file_path;
+			$quote->author = $quote->author;
+			return $quote;
+		});
+		return $quotes;
+	}
 }

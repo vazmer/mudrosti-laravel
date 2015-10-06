@@ -24,7 +24,8 @@ $susy: (
         gutter-position: inside-static,
         last-flow: from,
         use-custom: (
-                rem: true
+                rem: true,
+                box-sizing: false
         )
 );
 

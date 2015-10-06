@@ -1,7 +1,33 @@
 <ul>
-    <li ng-repeat="quote in quotes">
-        <h3>
-            <a href="/{{quote.slug}}" title="{{quote.text}}">{{ quote.text }}</a>
-        </h3>
+    <li ng-repeat="quote in quotes" class="quote fade" ng-if="isActive(quote)">
+        <article>
+            <header class="quote-headline-wrapper">
+                <h1 class="quote-headline" ng-bind-html="quote.text | toTrusted"></h1>
+                <h2 class="quote-author" ng-if="quote.author">{{ quote.author.name }}</h2>
+            </header>
+            <figure class="quote-image bg-cover" ng-style="{'background-image': 'url(' + quote.image_url + ')'}"></figure>
+        </article>
     </li>
 </ul>
+<aside class="quote-list-nav">
+    <a href="javascript:void(0)" ng-click="goToQuote(getPrevQuote())" ng-hide="isActiveFirstQuote()">
+        <div class="quote-list-nav-prev">
+            <div class="nav-inner">
+                <div class="nav-arrow"></div>
+                <div class="nav-thumbnail-wrapper">
+                    <div class="nav-counter">{{getPrevQuoteCounter()}}/{{quotes.length}}</div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="javascript:void(0)" ng-click="goToQuote(getNextQuote())" ng-hide="isActiveLastQuote()">
+        <div class="quote-list-nav-next">
+            <div class="nav-inner">
+                <div class="nav-arrow"></div>
+                <div class="nav-thumbnail-wrapper">
+                    <div class="nav-counter">{{getNextQuoteCounter()}}/{{quotes.length}}</div>
+                </div>
+            </div>
+        </div>
+    </a>
+</aside>

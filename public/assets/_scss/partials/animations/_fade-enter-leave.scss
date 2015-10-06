@@ -1,0 +1,23 @@
+.fade {
+  @include transition;
+  @include transition-duration(1s);
+
+  &.ng-leave {
+    @include transition-duration(.15s);
+  }
+
+  &.ng-leave.ng-leave-active,
+  &.ng-move {
+    opacity: 0;
+  }
+
+  &.ng-enter {
+    opacity: .3;
+  }
+
+  &.ng-leave,
+  &.fade.ng-move.ng-move-active,
+  &.fade.ng-enter.ng-enter-active {
+    opacity: 1;
+  }
+}

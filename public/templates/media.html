@@ -1,5 +1,5 @@
 <section class="post-media-list">
-    <article ng-repeat="media in post.media.items" class="post-media" ng-class="{active: isActiveMedia(media)}">
+    <article ng-repeat="media in post.media.items" class="quote" ng-class="{active: isActiveMedia(media)}">
         <header class="post-media-headline-wrapper">
             <h1 class="post-media-headline" ng-bind-html="media.excerpt | toTrusted"></h1>
         </header>
@@ -8,7 +8,7 @@
 
     <aside class="post-media-list-nav">
         <a href="javascript:void(0)">
-            <div class="post-media-list-nav-prev" ng-click="goToPrevMedia()" ng-hide="isActiveFirstMedia()">
+            <div class="post-media-list-nav-prev" ng-click="goToPrevMedia()" ng-hide="isActiveFirstQuote()">
                 <div class="nav-inner">
                     <div class="nav-arrow"></div>
                     <div class="nav-thumbnail-wrapper">
@@ -19,7 +19,7 @@
             </div>
         </a>
         <a href="javascript:void(0)">
-            <div class="post-media-list-nav-next" ng-click="goToNextMedia()" ng-hide="isActiveLastMedia()">
+            <div class="post-media-list-nav-next" ng-click="goToNextMedia()" ng-hide="isActiveLastQuote()">
                 <div class="nav-inner">
                     <div class="nav-arrow"></div>
                     <div class="nav-thumbnail-wrapper">

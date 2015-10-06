@@ -1,5 +1,8 @@
 @import "partials/setup/base";
 
+// Animations
+@import "partials/animations/fade-enter-leave";
+
 // Header
 @import "partials/header/base";
 
@@ -15,8 +18,4 @@
 @import "partials/page/home";
 
 // Post
-@import "partials/post/post-media";
-
-// Sliders
-@import "partials/slider/slider-base";
-@import "partials/slider/slider-fullscreen";
+@import "partials/quote/quote";

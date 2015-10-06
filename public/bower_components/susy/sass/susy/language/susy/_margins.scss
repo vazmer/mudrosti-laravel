@@ -68,7 +68,7 @@
 // ------
 // Add spanning-margins before and after an element.
 // - $pre     : <span>
-// - [$post]  : <span>
+// - [$quote]  : <span>
 @mixin squish(
   $pre,
   $post: false

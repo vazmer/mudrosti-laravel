@@ -14,8 +14,6 @@
 Route::pattern('id', '[0-9]+');
 Route::pattern('slug', '[a-z0-9-]+');
 
-Route::get('/{slug}', function() { return View::make('index-ng'); });
-
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
     require __DIR__.'/admin_routes.php';
 });
@@ -23,3 +21,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function(){
 	require __DIR__.'/api_routes.php';
 });
+
+Route::get( '{catchall}', function ( $page ) {
+	return View::make('index-ng');
+} )->where('catchall', '(.*)');

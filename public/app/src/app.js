@@ -1,12 +1,12 @@
 var apiPrefix = 'api/';
 
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'ngAnimate']);
 
 app.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
     $routeProvider
-        .when('/:categorySlug', {
+        .when('/:categorySlug/:quoteSlug', {
             controller: 'QuotesCollectionController',
             templateUrl: 'templates/quotes.html'
         })
@@ -16,7 +16,7 @@ app.config(function($routeProvider, $locationProvider) {
 app.config(['$httpProvider', function ($httpProvider) {
     // enable http caching by default
     $httpProvider.defaults.cache = true;
-}])
+}]);
 
 app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
     var original = $location.path;
@@ -31,5 +31,3 @@ app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $loc
         return original.apply($location, [path]);
     };
 }]);
-
-

@@ -129,7 +129,7 @@ class ImageCategoryController extends Controller
 			return date('F j, Y, g:i a', strtotime($category->created_at));
 		})->addColumn('actions', function ($category)
 		{
-			return '<a href="' . url('admin/categories/' . $category->id . '/edit') . '" class="btn btn-success btn-sm" ><span class="glyphicon glyphicon-pencil"></span>  Edit</a>';
+			return '<a href="' . url('admin/categories-of-images/' . $category->id . '/edit') . '" class="btn btn-success btn-sm" ><span class="glyphicon glyphicon-pencil"></span>  Edit</a>';
 		});
 
 		$filters = \Input::get('filters');

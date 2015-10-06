@@ -39,6 +39,7 @@ var paths = {
             'app/src/directives/*.js',
             'app/src/services/*.js',
             'app/src/views/*.js',
+            'app/src/filters/*.js'
         ],
         dest: 'app/prod/'
     },

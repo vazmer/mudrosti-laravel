@@ -38,7 +38,7 @@ class QuoteController extends Controller
 			->withTitle('Create quote')
 			->withAuthors($authors)
 			->withCategories($categories)
-			->withCategoriesOfImages($categoriesOfImages);
+			->with('categoriesOfImages', $categoriesOfImages);
 	}
 
 
